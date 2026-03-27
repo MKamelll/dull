@@ -1,4 +1,6 @@
 #editor-area {
+    min-height: 20px;
+    min-width: 150px;
     font-family: "DejaVu Sans Mono";
     font-size: 16pt;
 }

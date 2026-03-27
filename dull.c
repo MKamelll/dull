@@ -81,6 +81,23 @@ static void editor_create_edit_area(GtkWidget **window, const char *syntax,
 
     gtk_widget_set_name(view, "editor-area");
 
+    GtkSourceCompletion *completion =
+        gtk_source_view_get_completion(GTK_SOURCE_VIEW(view));
+
+    GtkSourceCompletionWords *words_provider =
+        gtk_source_completion_words_new("Words");
+    gtk_source_completion_words_register(words_provider,
+                                         GTK_TEXT_BUFFER(buffer));
+
+    g_object_set(words_provider, "minimum-word-size", 2, NULL);
+
+    gtk_source_completion_add_provider(
+        completion, GTK_SOURCE_COMPLETION_PROVIDER(words_provider));
+
+    g_object_set(completion, "select-on-show", FALSE, NULL);
+    g_object_set(completion, "show-icons", FALSE, NULL);
+    g_object_set(completion, "page-size", 5, NULL);
+
     GtkWidget *scrolled_window = gtk_scrolled_window_new();
     gtk_scrolled_window_set_child(GTK_SCROLLED_WINDOW(scrolled_window), view);
 
