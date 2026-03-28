@@ -1,6 +1,9 @@
-#editor-area {
+.cell {
     min-height: 20px;
-    min-width: 150px;
+    min-width: 40px;
+}
+
+#editor-area {
     font-family: "DejaVu Sans Mono";
     font-size: 16pt;
 }
